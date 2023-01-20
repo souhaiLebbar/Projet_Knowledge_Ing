@@ -1,0 +1,43 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2008/05/skos#> .
+@prefix mc: <http://www.inria.org/entity/> .
+@prefix mp: <http://www.inria.org/property/> .
+
+mc:Disease
+    a owl:Thing , skos:Concept ;
+    owl:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty mp:hasSyndrom ;
+        owl:minCardinality 1
+    ] ;
+    owl:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty mp:hasTherapy ;
+        owl:minCardinality 1
+    ] ;
+    skos:definition "Abnormal condition negatively affecting organisms."@en , "Altération de la santé."@fr ;
+    skos:prefLabel "Disease"@en , "Maladie"@fr .
+
+mp:hasSyndrom
+    a owl:ObjectProperty ;
+    rdfs:domain mc:Disease ;
+    rdfs:range mc:Syndrom ;
+    rdfs:comment "Possible symptoms or signs of a medical condition a disease has"@en , "Possibles symptômes ou signes qu'une condition médicale ou une maladie peut avoir"@fr ;
+    rdfs:label "has the symptom"@en , "a le symptôme"@fr .
+
+mp:hasTherapy
+    a owl:ObjectProperty ;
+    rdfs:domain mc:Disease ;
+    rdfs:range mc:Therapy ;
+    rdfs:comment "Possible therapy a patient can have to cure his or her disease"@en , "Thérapie possible qu'un patient peut suivre pour guérir sa maladie"@fr ;
+    rdfs:label "has for therapy"@en , "a pour thérapie"@fr .
+
+mp:hasWeight
+    a owl:ObjectProperty ;
+    rdfs:domain mc:Syndrom ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "severity degree of the syndrom" ;
+    rdfs:label "has severity degree"@en, "a pour gravité"

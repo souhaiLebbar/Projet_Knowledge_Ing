@@ -5,15 +5,10 @@
 - here is the command to lift data frim data folder to the output folder:
 
 <code>
-  
-./csv2rdf -u metadata/meta_"name".json -o output/filename.ttl
-  
+./csv2rdf -u metadata/meta_"name".json -o output/filename.ttl  
 </code>
 
 - or you can simply run the shell script ./run.sh
-
 <code>
-  
 ./run.sh
-
 </code>

@@ -61,6 +61,9 @@ if submitted & (txt=="csv"):
     # Load the turtle file into a graph
     g = Graph()
     g.parse("csv_lifting/output/dataset.ttl", format="turtle")
+    g.parse("csv_lifting/output/symptom_Description.ttl", format="turtle")
+    g.parse("csv_lifting/output/symptom_precaution.ttl", format="turtle")
+    g.parse("csv_lifting/output/symptom_severity.ttl", format="turtle")
     # Create a namespace for the ontology
     ontology = Namespace("disease_owl.ttl")
     # Create a SPARQL endpoint from the graph
@@ -75,10 +78,13 @@ if submitted & (txt=="csv"):
         PREFIX owl:  <http://www.w3.org/2002/07/owl#>
         PREFIX schema: <http://schema.org/>
 
-        SELECT ?diseaseName ?syndrom WHERE {
+        SELECT ?diseaseName ?syndromName ?severity ?therapy WHERE {
             ?disease a mc:Disease;
                 schema:name ?diseaseName;
-                mp:hasSyndrom ?syndrom .
+                mp:hasSyndrom ?syndromName ;
+                mp:hasTherapy ?therapy .
+                ?syndrom schema:name ?syndromName;
+                    mp:hasWeight ?severity .
             }
 
         """,
@@ -89,7 +95,7 @@ if submitted & (txt=="csv"):
     #csv_results = sparql.query().convert()
     st.subheader("CSV result :")
     # Convert the query results to JSON
-    json_results = json.dumps([{'diseaseName':row[0], 'syndrom':row[1]} for row in qres])
+    json_results = json.dumps([{'diseaseName':row[0], 'syndromName':row[1], 'severity':row[2], 'therapy':row[3] } for row in qres])
 
     # Print the results
     st.json(json_results)

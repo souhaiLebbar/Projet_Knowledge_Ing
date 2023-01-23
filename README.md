@@ -4,3 +4,7 @@
 pip install requirements.txt
 streamlit run app.py
 ```
+# or simply run the shell script :
+```
+bash run.sh
+```

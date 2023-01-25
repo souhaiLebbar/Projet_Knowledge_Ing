@@ -6,11 +6,15 @@
 @prefix skos: <http://www.w3.org/2008/05/skos#> .
 @prefix mc: <http://www.inria.org/entity/> .
 @prefix mp: <http://www.inria.org/property/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
 
 # Classes
 
 mc:Disease
-    a owl:Thing , skos:Concept ;
+    a
+        owl:Thing ,
+        skos:Concept ;
+    owl:sameAs wd:Q12136 ;
     owl:subClassOf [
         a owl:Restriction ;
         owl:onProperty mp:hasSymptom ;
@@ -29,21 +33,27 @@ mc:Disease
         "Maladie"@fr .
 
 mc:Patient
-    a foaf:Person ;
+    a
+        foaf:Person ,
+        skos:Concept ;
+    owl:sameAs wd:Q181600 ;
     owl:subclassOf [
         a owl:Restriction ;
         owl:onProperty mp:consulted ;
         owl:minCardinality 1
-    ] 
+    ] ;
     skos:definition
         "Person who takes a medical treatment or is subject of a case study."@en ,
-        "Personne recevant une attention médicale."@fr
+        "Personne recevant une attention médicale."@fr ;
     skos:prefLabel
         "Patient"@en ,
         "Patient"@fr .
 
 mc:Consultation
-    a owl:Class ;
+    a
+        owl:Class ,
+        skos:Concept ;
+    owl:sameAs wd:Q4014799 ;
     skos:definition 
         "Appointment where a patient sees a doctor for a health problem"@en ,
         "Rendez-vous durant lequel un patient voit un docteur pour un problème de santé"@fr ;
@@ -52,7 +62,10 @@ mc:Consultation
         "Consultation"@fr .
 
 mc:Symptom
-    a owl:Class ;
+    a
+        owl:Class ,
+        skos:Concept ;
+    owl:sameAs wd:Q169872 ;
     skos:definition
         "Departure from normal function or feeling which is noticed by a patient, reflecting the presence of an unusual state, or of a disease; subjective, observed by the patient, cannot be measured directly"@en ,
         "Signal indicatif d'une maladie ou d'une blessure"@fr ;
@@ -61,7 +74,10 @@ mc:Symptom
         "Symptôme"@fr .
 
 mc:Doctor
-    a owl:Class ;
+    a
+        owl:Class ,
+        skos:Concept ;
+    owl:sameAs wd:Q39631 ;
     rdfs:subClassOf foaf:Person ;
     skos:definition
         "Professional who practices medicine"@en ,
@@ -71,7 +87,10 @@ mc:Doctor
         "Docteur"@fr .
 
 mc:Medicine
-    a owl:class ;
+    a
+        owl:class ,
+        skos:Concept ;
+    owl:sameAs wd:Q12140 ;
     skos:definition
         "Substance used to diagnose, cure, treat, or prevent disease"@en ,
         "Type de substance destinée à soigner, diagnostiquer, traîter ou prévenir une maladie"@fr ;
@@ -129,7 +148,7 @@ mp:name
     a owl:ObjectProperty ;
     rdfs:subPropertyOf foaf:name ;
     rdfs:domain foaf:Person ;
-    rdfs:range wsd:string ;
+    rdfs:range xsd:string ;
     rdfs:comment
         "The name of the given person"@en ,
         "Le nom de la personne donnée"@fr ;
